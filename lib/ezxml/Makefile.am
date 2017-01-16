@@ -8,4 +8,6 @@ EXTRA_DIST = \
 # Build rules for libraries.
 noinst_LTLIBRARIES = libezxml.la
 
-lib_libezxml_la_SOURCES = ezxml.c
+libezxml_la_SOURCES = \
+	ezxml.c \
+	ezxml.h

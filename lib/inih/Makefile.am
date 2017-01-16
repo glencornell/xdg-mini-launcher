@@ -32,4 +32,6 @@ EXTRA_DIST = \
 # Build rules for libraries.
 noinst_LTLIBRARIES = libinih.la
 
-lib_libinih_la_SOURCES = ini.c
+libinih_la_SOURCES = \
+	ini.c \
+	ini.h

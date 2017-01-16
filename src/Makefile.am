@@ -1,13 +1,24 @@
 bin_PROGRAMS = xdg-mini-launcher
 
-xdg-mini-launcher_SOURCES = \
+xdg_mini_launcher_SOURCES = \
 	abstract_entry.cpp \
 	application_entry.cpp \
 	entry_factory.cpp \
 	main.cpp \
 	process.cpp \
-	wmctrl.cpp \
 	wmdesktop.cpp \
 	x11info.cpp
 
-xdg-mini-launcher_LDADD = $(IMLIB2_LDADD) $(EZXML_LDADD) $(INIH_LDADD)
+xdg_mini_launcher_LDADD = \
+	$(top_srcdir)/lib/ezxml/libezxml.la \
+	$(top_srcdir)/lib/inih/libinih.la \
+	$(top_srcdir)/lib/wmctrl/libwmctrl.la \
+	$(IMLIB2_LDADD)
+xdg_mini_launcher_CPPFLAGS = \
+	-I$(top_srcdir)/lib/ezxml \
+	-I$(top_srcdir)/lib/inih \
+	-I$(top_srcdir)/lib/wmctrl
+xdg_mini_launcher_CXXFLAGS = \
+	-I$(top_srcdir)/lib/ezxml \
+	-I$(top_srcdir)/lib/inih \
+	-I$(top_srcdir)/lib/wmctrl

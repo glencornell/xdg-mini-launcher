@@ -1,1 +1,1 @@
-SUBDIRS = gtest ezxml inih
+SUBDIRS = gtest ezxml inih wmctrl
