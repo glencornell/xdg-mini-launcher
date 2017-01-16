@@ -1,0 +1,1 @@
+SUBDIRS = gtest ezxml inih

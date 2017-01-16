@@ -1,0 +1,61 @@
+xdg-mini-launcher
+=================
+
+This is a desktop launcher application targeting embedded systems.  It
+is based upon Thomas-M's excellent xlunch program, found here:
+
+https://github.com/Tomas-M/xlunch
+
+This program loosely follows the desktop entry, menu and XDG base
+directory specifications found here:
+
+https://standards.freedesktop.org/desktop-entry-spec/latest/
+https://specifications.freedesktop.org/menu-spec/latest/index.html
+https://specifications.freedesktop.org/basedir-spec/latest/index.html
+
+This program presents a full-screen window to the user with a bunch of
+icons obtained from .desktop entry files (only of Type=Application are
+supported).  The icons are organized according to a menu tree
+hierarchy specified in the XDG menu file.
+
+This program interacts with a window manager to place each application
+on a separate desktop, if the program is already running, pressing the
+icon subsequent times will activate the window of the application.
+
+minimal-gtest-autotools
+-----------------------
+
+This project uses Jon Haggblad's minimal-gtest-autotools, a minimal
+template for using gtest (Google Test) in an Autotools project
+obtained from:
+
+http://github.com/octol/minimal-gtest-autotools
+
+Depends
+-------
+
+- C++ compiler
+- Autoconf
+- Automake
+- Libtool
+
+Build
+-----
+
+If you've obtained the template from Github (or any git repo) you need to
+generate all the necessary build scripts by running
+
+    autoreconf -ivf
+
+With these in place then
+
+    ./configure
+    make
+
+Run the tests with
+
+    make check
+
+Author
+------
+Glen Cornell glen.m.cornell@gmail.com
