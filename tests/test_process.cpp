@@ -33,7 +33,7 @@ namespace {
     process p;
     std::vector<std::string> args;
     p.start("/usr/bin/xclock", args);
-    EXPECT_EQ(0, f.Bar(input_filepath, output_filepath));
+    EXPECT_GT(p.pid(), 0);
   }
 
   // Tests that Foo does Xyz.
