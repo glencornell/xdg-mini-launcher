@@ -32,7 +32,7 @@ namespace {
   TEST_F(test_process, start_starts_a_child_process) {
     process p;
     std::vector<std::string> args;
-    p.start("/usr/bin/xclock", args);
+    p.exec("/usr/bin/xclock", args);
     EXPECT_GT(p.pid(), 0);
   }
 

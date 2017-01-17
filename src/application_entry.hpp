@@ -31,6 +31,7 @@ namespace xdg {
     std::string m_path;
     bool m_terminal;
 
+    ApplicationEntry();
   };
 
 }

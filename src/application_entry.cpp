@@ -36,6 +36,11 @@ ApplicationEntry::ApplicationEntry(std::string const &name,
 {
 }
 
+ApplicationEntry::ApplicationEntry()
+  : AbstractEntry(Unknown, "", "")
+{
+}
+
 ApplicationEntry::~ApplicationEntry()
 {
   this->kill();
@@ -61,7 +66,7 @@ void ApplicationEntry::exec()
       // Create a new process
       m_process = new ::process();
       m_process->chdir(m_path);
-      m_process->start(m_exec, arguments);
+      m_process->exec(m_exec, arguments);
     }
 }
 
