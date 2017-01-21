@@ -14,13 +14,69 @@ https://specifications.freedesktop.org/menu-spec/latest/index.html
 https://specifications.freedesktop.org/basedir-spec/latest/index.html
 
 This program presents a full-screen window to the user with a bunch of
-icons obtained from .desktop entry files (only of Type=Application are
-supported).  The icons are organized according to a menu tree
-hierarchy specified in the XDG menu file.
+icons obtained from .desktop entry files (only of Type=Application &
+Directory are supported).  The icons are organized according to a menu
+tree hierarchy specified in the XDG menu file.
 
-This program interacts with a window manager to place each application
-on a separate desktop, if the program is already running, pressing the
-icon subsequent times will activate the window of the application.
+This program interacts with a window manager. If the program is
+already running, pressing the icon subsequent times will activate the
+window of the application (switching to the appropriate virtual
+desktop, map the window and bring to the topof the stacking order).
+
+This program does not allow for any run-time reconfiguration.  This is
+unlike most of the similar application launchers out there and it is
+an intentional design decision.  The rationale is that this program is
+intened to run on an embedded device such as a in-vehicle infotainment
+(IVI) display, where the configuration is static.
+
+XDG Menu Specification Compliance
+---------------------------------
+
+My xdg implementation is not standards-compliant.  I only support the
+following XML tags:
+
+Menu
+Name
+Directory
+Include
+And
+Filename
+Menuname
+
+That seems to satisfy my needs for creating a simple menu tree
+hierarchy.  Here are some guidelines for creating menus that this
+program can parse:
+
+* All Menu elements MUST have only one Name child element.
+* All Menu elements MUST have only one Directory child element.
+* All Menu elements MUST have only one Include child element.
+* All Inlcude elements must have only one And child element.
+* All And elements may have any combination of Filename and Menuname elements.
+* All Menu elements may have more than one Menu child elements.
+* Filename and Menuname elements will be displayed in the order in which they appear within their respective And parent element.
+
+XDG Desktop Entry Specification Compliance
+------------------------------------------
+
+Like the menu specification, this program only supports a subset of
+freedesktop.org's desktop entry specification.  I support only
+.desktop and .directory files.
+
+The desktop files only support the following tags:
+
+Name
+Icon
+Exec
+Path
+Terminal (parsed, but not implemented yet)
+
+The directory entry files support only the following tags:
+
+Name
+Icon
+
+If the Icon tag is not supplied or is an empty string (i.e. ""), then
+this program will attempt to create one at initialization.
 
 minimal-gtest-autotools
 -----------------------
