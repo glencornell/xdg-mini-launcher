@@ -40,8 +40,9 @@ static void signal_handler(int sig, siginfo_t *si, void *context)
 	  if (i != managed_processes->end())
 	    {
 	      std::cerr << " (" << i->second->name() << ")";
-	      i->second->wait();
+	      std::cerr << "       pid = " << i->second->pid() << std::endl;
 	      managed_processes->erase(i);
+	      i->second->wait();
 	    }
 	  std::cerr << std::endl;
 	}
@@ -57,14 +58,21 @@ process::process() :
 {
 }
 
+process::process(const process &p) :
+  m_cwd(),
+  m_exec(),
+  m_args(),
+  m_pid(-1)
+{
+}
+
+process &process::operator=(const process &p)
+{
+}
+
 process::~process()
 {
-  if(m_pid > 0)
-    {
-      ::kill(m_pid, SIGTERM);
-      ::waitpid(m_pid, 0, 0);
-      m_pid = -1;
-    }
+  kill();
 }
 
 void process::chdir(std::string const &path)

@@ -1,5 +1,6 @@
 #include "entry_factory.hpp"
 #include "application_entry.hpp"
+#include "directory_entry.hpp"
 #include "ini.h"
 #include <iostream>
 
@@ -13,6 +14,11 @@ int DesktopEntryFactory::ini_handler(void* user_data,
   DesktopEntryFactory* f = (DesktopEntryFactory*)user_data;
   f->entry_data[section][name] = std::string(value);
   return 1;
+}
+
+DesktopEntryFactory::DesktopEntryFactory()
+{
+  //TODO: getenv("XDG_CONFIG_HOME")...
 }
 
 AbstractEntry *DesktopEntryFactory::create(const char *file)
@@ -42,7 +48,8 @@ AbstractEntry *DesktopEntryFactory::create(const char *file)
 	      std::cerr << "Desktop entries of Type=Link are not supported" << std::endl;
 	      break;
 	    case AbstractEntry::Directory:
-	      std::cerr << "Desktop entries of Type=Directory are not supported" << std::endl;
+	      rval = new DirectoryEntry(entry_data["Desktop Entry"]["Name"],
+					entry_data["Desktop Entry"]["Icon"]);
 	      break;
 	    default:
 	      std::cerr << "Desktop entries of Type=" << item << " are not supported" << std::endl;

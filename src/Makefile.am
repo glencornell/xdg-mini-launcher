@@ -2,12 +2,22 @@ bin_PROGRAMS = xdg-mini-launcher
 
 xdg_mini_launcher_SOURCES = \
 	abstract_entry.cpp \
+	abstract_entry.hpp \
 	application_entry.cpp \
+	application_entry.hpp \
+	directory_entry.cpp \
+	directory_entry.hpp \
 	entry_factory.cpp \
+	entry_factory.hpp \
 	main.cpp \
+	menu_entry.cpp \
+	menu_entry.hpp \
 	process.cpp \
+	process.hpp \
 	wmdesktop.cpp \
-	x11info.cpp
+	wmdesktop.hpp \
+	x11info.cpp \
+	x11info.hpp
 
 xdg_mini_launcher_LDADD = \
 	$(top_srcdir)/lib/ezxml/libezxml.la \

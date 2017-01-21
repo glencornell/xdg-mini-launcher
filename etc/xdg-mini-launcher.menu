@@ -1,0 +1,24 @@
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+ "http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">
+
+<Menu>
+  <Name>Top</Name>
+  <AppDir>applications</AppDir>
+  <Directory>top.directory</Directory>
+  <Include>
+    <And>
+      <Filename>firefox.desktop</Filename>
+      <Menuname>Utilities</Menuname>
+      <Filename>terminal.desktop</Filename>
+    </And>
+  </Include>
+
+  <Menu>
+    <Name>Utilities</Name>
+    <Directory>utilities.directory</Directory>
+    <Layout>
+      <Filename>clock.desktop</Filename>
+      <Filename>settings.desktop</Filename>
+    </Layout>
+  </Menu>
+</Menu>

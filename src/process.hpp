@@ -7,7 +7,7 @@
 class process {
 public:
   process();
-  ~process();
+  virtual ~process();
   void chdir(std::string const &path);
   void exec(std::string const &exec, std::vector<std::string> const &args);
   pid_t pid(void);
@@ -16,6 +16,8 @@ public:
   std::string const &name(void);
 
 private:
+  process(const process &);
+  process &operator=(const process &);
   void set_name(void);
 
 private:

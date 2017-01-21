@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name = terminal
+Type = Application
+Icon = terminal-icon.png
+Exec = /usr/bin/xterm

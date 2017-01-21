@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name = Firefox
+Type = Application
+Icon = firefox.png
+Exec = /usr/bin/firefox

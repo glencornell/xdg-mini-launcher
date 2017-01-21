@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name = xclock
+Type = Application
+Icon = clock-icon.png
+Exec = /usr/bin/xclock
