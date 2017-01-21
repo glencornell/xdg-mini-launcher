@@ -2,8 +2,9 @@
 
 #include "directory_entry.hpp"
 #include "ezxml.h"
+#include "xdginfo.hpp"
 #include <string>
-#include <list>
+#include <vector>
 
 namespace xdg
 {
@@ -16,8 +17,6 @@ namespace xdg
     MenuEntry(DirectoryEntry *dir);
     MenuEntry();
   private:
-    std::string m_appdir;
-    std::string m_directorydir;
-    std::list<AbstractEntry *> m_children;
+    std::vector<AbstractEntry *> m_children;
   };
 }

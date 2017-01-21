@@ -18,14 +18,13 @@ int DesktopEntryFactory::ini_handler(void* user_data,
 
 DesktopEntryFactory::DesktopEntryFactory()
 {
-  //TODO: getenv("XDG_CONFIG_HOME")...
 }
 
-AbstractEntry *DesktopEntryFactory::create(const char *file)
+AbstractEntry *DesktopEntryFactory::create(std::string const &file)
 {
   AbstractEntry * rval = NULL;
 
-  if (::ini_parse(file, ini_handler, this) < 0)
+  if (::ini_parse(file.c_str(), ini_handler, this) < 0)
     {
       std::cerr << "Unable to parse \"" << file << "\"" << std::endl;
     }

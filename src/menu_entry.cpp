@@ -2,6 +2,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <pwd.h>
 #include "entry_factory.hpp"
 #include "menu_entry.hpp"
 #include "ezxml.h"
@@ -13,6 +14,8 @@ MenuEntry *MenuEntry::create(ezxml_t top)
   MenuEntry *rval = 0;
   ezxml_t name_elem = ezxml_child(top, "Name");
   DesktopEntryFactory factory;
+  xdginfo xdg;
+  
   if(name_elem == 0)
     {
       std::cerr << "ERROR: menu doesn't have a \"Name\" element." << std::endl;
@@ -28,7 +31,9 @@ MenuEntry *MenuEntry::create(ezxml_t top)
       else
 	{
 	  const char *directory = directory_elem->txt;
-	  DirectoryEntry *new_directory_object = dynamic_cast<DirectoryEntry *>(factory.create(directory));
+	  std::string full_path;
+	  xdg.find(full_path, "directories", directory);
+	  DirectoryEntry *new_directory_object = dynamic_cast<DirectoryEntry *>(factory.create(full_path));
 	  if(new_directory_object == 0)
 	    {
 	      std::cerr << "ERROR: unable to parse directory entry \"" << directory_elem->txt << "\"." << std::endl;
@@ -63,7 +68,8 @@ MenuEntry *MenuEntry::create(ezxml_t top)
 				{
 				  // Child element is an application entry:
 				  std::string file(child->txt);
-				  std::string full_path(rval->m_appdir + "/" + file);
+				  std::string full_path;
+				  xdg.find(full_path, "applications", file);
 				  AbstractEntry *item = factory.create(full_path.c_str());
 				  if (item==0)
 				    {

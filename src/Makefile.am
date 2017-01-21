@@ -17,7 +17,9 @@ xdg_mini_launcher_SOURCES = \
 	wmdesktop.cpp \
 	wmdesktop.hpp \
 	x11info.cpp \
-	x11info.hpp
+	x11info.hpp \
+	xdginfo.cpp \
+	xdginfo.hpp
 
 xdg_mini_launcher_LDADD = \
 	$(top_srcdir)/lib/ezxml/libezxml.la \

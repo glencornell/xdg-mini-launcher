@@ -1,4 +1,5 @@
 #include "abstract_entry.hpp"
+#include "dbg.h"
 
 using namespace xdg;
 
@@ -9,6 +10,7 @@ AbstractEntry::AbstractEntry(type_t t,
     m_name(name),
     m_icon(icon)
 {
+  log_info("Type = \"%s\", Name = \"%s\", Icon = \"%s\"", cvt(m_type).c_str(), m_name.c_str(), m_icon.c_str());
 }
 
 AbstractEntry::~AbstractEntry()

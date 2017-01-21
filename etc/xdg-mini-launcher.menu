@@ -3,7 +3,6 @@
 
 <Menu>
   <Name>Top</Name>
-  <AppDir>applications</AppDir>
   <Directory>top.directory</Directory>
   <Include>
     <And>
@@ -16,9 +15,11 @@
   <Menu>
     <Name>Utilities</Name>
     <Directory>utilities.directory</Directory>
-    <Layout>
-      <Filename>clock.desktop</Filename>
-      <Filename>settings.desktop</Filename>
-    </Layout>
+    <Include>
+      <And>
+	<Filename>clock.desktop</Filename>
+	<Filename>settings.desktop</Filename>
+      </And>
+    </Include>
   </Menu>
 </Menu>
