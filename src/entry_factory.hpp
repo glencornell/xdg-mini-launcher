@@ -11,7 +11,7 @@ namespace xdg
   public:
     DesktopEntryFactory();
     AbstractEntry *create(std::string const &file);
-    
+
   private:
     static int ini_handler(void* user_data, const char* section, const char* name, const char* value);
 

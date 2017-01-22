@@ -4,6 +4,7 @@
 #include <pwd.h>
 #include <unistd.h>
 #include <sstream>
+#include "dbg.h"
 
 using namespace xdg;
 
@@ -47,13 +48,14 @@ xdginfo::xdginfo()
 }
 
 std::string &xdginfo::find(std::string &full_path,
-			   std::string const &file_type,
+			   std::string const &subdir,
 			   std::string const &file)
 {
   full_path.erase();
   for(int i = 0; i != m_xdg_data_dirs.size(); ++i)
     {
-      std::string path(m_xdg_data_dirs[i] + "/" + file_type + "/" + file);
+      std::string sub(subdir.size() ? std::string("/") + subdir + "/" : "/");
+      std::string path(m_xdg_data_dirs[i] + sub + file);
       struct stat buf = { 0 };
       if(::stat(path.c_str(),&buf) == 0)
 	{

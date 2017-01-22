@@ -6,6 +6,7 @@
 #include "entry_factory.hpp"
 #include "menu_entry.hpp"
 #include "ezxml.h"
+#include "xdginfo.hpp"
 
 using namespace xdg;
 
@@ -140,21 +141,19 @@ MenuEntry *MenuEntry::create(ezxml_t top)
 MenuEntry *MenuEntry::create(std::string const &filename)
 {
   MenuEntry *rval = 0;
+  xdg::xdginfo xdg;
   
   // extract the path from the filename:
-  std::string path;
-  std::string::size_type pos = filename.rfind('/');
-  if (pos != std::string::npos)
-    ++pos;
-  else
-    pos = 0;
-  path = filename.substr(pos);
+  std::string full_path;
 
-  // does the file exist?
+  // does the file exist as specified?
   struct stat file_info = { 0 };
+  bool found = false;
+  
   if (::stat(filename.c_str(), &file_info))
     {
-      std::cerr << "ERROR: \"" << filename << "\" does not exist." << std::endl;
+      // does not exist as specified, now find it according to the XDG rules:
+      xdg.find(full_path, "", filename);
     }
   else
     {
@@ -164,11 +163,19 @@ MenuEntry *MenuEntry::create(std::string const &filename)
 	}
       else
 	{
-	  // file exists, open it and parse
-	  ezxml_t top = ezxml_parse_file(filename.c_str());
-	  rval = create(top);
-	  ezxml_free(top);
+	  // file exists
+	  full_path = filename;
 	}
+    }
+  if(full_path.size())
+    {
+      ezxml_t top = ezxml_parse_file(full_path.c_str());
+      rval = create(top);
+      ezxml_free(top);
+    }
+  else
+    {
+      std::cerr << "ERROR: unable to load \"" << filename << "\"" <<std::endl;
     }
   return rval;
 }

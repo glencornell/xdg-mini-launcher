@@ -59,4 +59,3 @@ AbstractEntry *DesktopEntryFactory::create(std::string const &file)
   entry_data.erase(entry_data.begin(), entry_data.end());
   return rval;
 }
-

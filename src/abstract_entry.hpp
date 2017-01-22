@@ -12,7 +12,7 @@ namespace xdg {
     enum type_t { Unknown, Application, Link, Directory };
     static type_t cvt(std::string const &str);
     static std::string cvt(type_t const t);
-    
+
   public:
     virtual ~AbstractEntry();
     AbstractEntry(type_t t, 
@@ -27,5 +27,5 @@ namespace xdg {
 
     AbstractEntry();
   };
-  
+
 }

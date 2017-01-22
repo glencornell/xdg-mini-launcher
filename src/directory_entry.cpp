@@ -16,4 +16,3 @@ DirectoryEntry::DirectoryEntry()
 DirectoryEntry::~DirectoryEntry()
 {
 }
-
