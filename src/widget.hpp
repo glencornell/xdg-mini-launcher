@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "property.hpp"
+#include "font.hpp"
 
 namespace gui
 {
@@ -16,6 +17,7 @@ namespace gui
     Property<int> width;
     Property<int> height;
     Property<int> border_width;
+    Property<Font *> font;
 
     bool mouse_over_cell(int mouse_x, int mouse_y) const;
     virtual void repaint() { dirty = false; }
