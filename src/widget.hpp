@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <X11/Xlib.h>
 #include "property.hpp"
 #include "font.hpp"
 
@@ -21,14 +20,7 @@ namespace gui
     Property<Font *> font;
 
     bool mouse_over_cell(int mouse_x, int mouse_y) const;
-
-    virtual void process_configure_notify_event(XConfigureEvent const *ev) { }
-    virtual void process_key_pressed_event(XKeyPressedEvent const *ev) { }
-    virtual void process_key_released_event(XKeyReleasedEvent const *ev) { }
-    virtual void process_button_pressed_event(XButtonPressedEvent const *ev) { }
-    virtual void process_button_released_event(XButtonReleasedEvent const *ev) { }
-
-    virtual void repaint() { dirty = true; }
+    virtual void repaint() { dirty = false; }
     
   protected:
     Widget *m_parent;
