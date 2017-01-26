@@ -9,17 +9,11 @@ xdg_mini_launcher_SOURCES = \
 	directory_entry.hpp \
 	entry_factory.cpp \
 	entry_factory.hpp \
-	grid.cpp \
-	grid.hpp \
 	main.cpp \
 	menu_entry.cpp \
 	menu_entry.hpp \
 	process.cpp \
 	process.hpp \
-	toolbutton.cpp \
-	toolbutton.hpp \
-	widget.cpp \
-	widget.hpp \
 	wmdesktop.cpp \
 	wmdesktop.hpp \
 	x11info.cpp \
